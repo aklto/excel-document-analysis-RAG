@@ -42,3 +42,5 @@ data/documents.jsonl
 
 # test data
 test/test_data/test_index
+junit
+.coverage*
