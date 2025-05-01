@@ -34,3 +34,11 @@ __MACOSX/
 # Environment variables
 .env
 .env.*
+
+# index file
+
+data/index
+data/documents.jsonl
+
+# test data
+test/test_data/test_index
