@@ -1,6 +1,10 @@
 name: ci-github-actions
 run-name: ${{ github.actor }} is testing through pytest
-on: [push]
+on:
+  pull_request:
+  push:
+    branches:
+      - main
 jobs:
   run-tests:
     runs-on: ubuntu-latest
@@ -16,7 +20,6 @@ jobs:
           pip install -r requirements.txt
           pip install pytest pytest-cov
       - name: Test with pytest
-        with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          pytest test/ --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: pytest test/ --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
