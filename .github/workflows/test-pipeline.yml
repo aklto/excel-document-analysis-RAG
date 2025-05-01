@@ -23,5 +23,6 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
+          export PYTHONPATH=.
           python scripts/init_index.py --input_path data/test.xlsx --output_dir data/
           pytest test/ --doctest-modules --junitxml=junit/test-results.xml --cov=com --cov-report=xml --cov-report=html
